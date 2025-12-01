@@ -1,0 +1,31 @@
+<div class="container t-4">
+    @if ( cartService.cartItems().length === 0 ){
+        <div class="alert alert-info mt-3">
+            Your cart is empty
+        </div>
+    } @else {
+        <mat-list>
+            @for (item of cartService.cartItems(); track item.product.id) {
+                <mat-list-item role="listitem">
+                    <img matListItemAvatar [src]="item.product.image" [alt]="item.product.title" style="object-fit: contain;">
+                    <div matListItemTitle>{{item.product.title}}</div>
+                    <div matListItemLine>
+                        <span>Quantity: {{item.quantity}}</span>
+                        <span class="mx-2">|</span>
+                        <span>Price: {{item.product.price | currency}}</span>
+                    </div>
+                </mat-list-item>
+            }
+            <mat-divider></mat-divider>
+        </mat-list>
+
+        <div class="d-flex justify-content-end mt-3">
+            <mat-card>
+                <mat-card-content class="fs-5 fw-bold">
+                    Total: {{ cartService.totalPrice() | currency}}
+                </mat-card-content>
+            </mat-card>
+        </div>
+    }
+
+</div>

@@ -1,0 +1,47 @@
+<h2>Products</h2>
+
+
+@if(productsService.loading()){
+    <div class="d-flex justify-content-center p-5">
+        <mat-spinner></mat-spinner>
+    </div>
+} @else if (productsService.gotError()) {
+  <div class="alert alert-danger">
+    Failed to load products.
+  </div>
+} @else {
+
+<div class="row">
+        @for(product of productsService.products(); track product.id){
+                <div class="col-md-4 mb-4">
+                    <mat-card>
+                        <img 
+                        mat-card-image 
+                        [src]="product.image"
+                        [alt]="product.title"
+                        style="height: 200px; object-fit: contain; padding: 1rem;;"
+                         />
+                    </mat-card>
+                    <mat-card-header>
+                        <mat-card-title>{{product.title}}</mat-card-title>
+                        <mat-card-subtitle>{{product.price | currency   }}</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                            <p>
+                                Rate: 
+                                {{ product.rating?.rate}}
+                            </p>
+                        </mat-card-content>
+                    <mat-card-actions>
+                        <button matButton>VIEW</button>
+                        <span class="spacer"></span>
+                        <button matIconButton (click)="addToCart(product)">
+                            <mat-icon>add_shopping_cart</mat-icon>
+                        </button>
+                    </mat-card-actions>
+                </div>
+            }
+</div>
+
+}
+

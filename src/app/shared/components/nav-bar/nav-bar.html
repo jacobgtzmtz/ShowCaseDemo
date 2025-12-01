@@ -1,0 +1,18 @@
+<mat-toolbar>
+  <span>Showcase Demo</span>
+  <span>
+    <a matButton [routerLink]="''">Home</a>
+  </span>
+  <span>
+    <a matButton [routerLink]="'products'">Products</a>
+  </span>
+
+  <span class="spacer"></span>
+ <span>
+    <a matButton [routerLink]="'login'">Login</a>
+  </span>
+  <button matIconButton [routerLink]="'shopping-cart'">
+    <mat-icon aria-hidden="false" aria-label="Shopping Cart" fontIcon="shopping_cart"></mat-icon>
+    <span style="color: #fff;">{{cartService.cartCount()}}</span>
+  </button>
+</mat-toolbar>
