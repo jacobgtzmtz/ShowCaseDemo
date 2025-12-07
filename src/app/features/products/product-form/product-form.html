@@ -1,1 +1,49 @@
-<p>product-form works!</p>
+<h2>Create New Product</h2>
+
+
+<form [formGroup]="productForm"  (ngSubmit)="onSubmit()" class="d-flex flex-column gap-3 w-50">
+
+    <mat-form-field class="w-100">
+        <mat-label>Product title</mat-label>
+        <input matInput formControlName="title" type="text">
+        @if(productForm.get("title")?.hasError('required')){
+            <mat-error>Title is required</mat-error>
+        }
+    </mat-form-field>
+
+     <mat-form-field class="w-100">
+        <mat-label>Price</mat-label>
+        <input matInput formControlName="price" type="number">
+        @if(productForm.get("price")?.hasError('required')){
+            <mat-error>Price is required</mat-error>
+        }
+        @if(productForm.get("price")?.hasError('min')){
+            <mat-error>Price must be positive</mat-error>
+        }
+    </mat-form-field>
+
+    <mat-form-field class="w-100">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description" type="text"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="w-100">
+        <mat-label>Category</mat-label>
+        <input matInput formControlName="category" type="text">
+        @if(productForm.get("category")?.hasError('required')){
+            <mat-error>Category is required</mat-error>
+        }
+    </mat-form-field>
+
+    <mat-form-field class="w-100">
+        <mat-label>Image URL</mat-label>
+        <input matInput formControlName="image" type="text">
+        @if(productForm.get("image")?.hasError('required')){
+            <mat-error>Image URL is required</mat-error>
+        }
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="productForm.invalid">Save Product</button>
+
+
+</form>

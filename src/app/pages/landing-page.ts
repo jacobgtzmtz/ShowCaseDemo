@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
+import ProductsList from '../features/products/products-list/products-list';
 
 @Component({
   selector: 'app-landing-page',
-  imports: [],
+  imports: [ProductsList],
   template: `
-    <p>
-      landing-page works!
-    </p>
+    <section>
+      <app-products-list [latest]="true"></app-products-list>
+    </section>
   `,
   styles: ``,
 })

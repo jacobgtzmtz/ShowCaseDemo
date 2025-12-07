@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { ProductService } from '../../../core/services/product-service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
@@ -7,17 +7,28 @@ import { CurrencyPipe } from '@angular/common';
 import { MatIcon } from "@angular/material/icon";
 import { IProduct } from '../../../core/models/iproduct';
 import { CartService } from '../../../core/services/cart-service';
+import { HighlightDirective } from '../../../shared/directives/highlight-directive';
+import { RouterLink } from "@angular/router";
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogcomponent } from '../../../shared/components/confirm-dialogcomponent/confirm-dialogcomponent';
 
 @Component({
   selector: 'app-products-list',
-  imports: [MatProgressSpinnerModule, MatCardModule, MatButtonModule, CurrencyPipe, MatIcon],
+  imports: [MatProgressSpinnerModule, MatCardModule, MatButtonModule, CurrencyPipe, MatIcon, HighlightDirective, RouterLink],
   templateUrl: './products-list.html',
   styles: ``,
 })
 export default class ProductsList {
+  public latest = input<boolean>(false);
 
   public productsService = inject(ProductService);
   private cartService = inject(CartService)
+  private dialog = inject(MatDialog);
+
+  protected filteredProducts = computed ( () => {
+    const list = this.productsService.products();
+    return this.latest() ? list.slice(0, 3) : list;
+  })
 
   /**
    * addToCart
@@ -26,4 +37,26 @@ export default class ProductsList {
     this.cartService.addToCart(product);
   }
 
+  /**
+   * deleteProduct
+   */
+  public deleteProduct(id: string) {
+      const product = this.productsService.products().find(p => p.id === id );
+      if(!product) return;
+
+      const dialogRef = this.dialog.open(ConfirmDialogcomponent, {
+        data: {productName: product.title }
+      });
+
+      dialogRef.afterClosed().subscribe( result => {
+        if (result) {
+          this.productsService.deleteProduct(id);
+        }
+      } )
+
+
+      
+
+
+  }
 }

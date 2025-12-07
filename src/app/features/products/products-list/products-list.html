@@ -1,4 +1,7 @@
-<h2>Products</h2>
+<div class="d-flex justify-content-between">
+    <h2>Products</h2>
+    <a matButton color="primary" [routerLink]="'/products/new'">Add Product</a>
+</div>
 
 
 @if(productsService.loading()){
@@ -12,16 +15,16 @@
 } @else {
 
 <div class="row">
-        @for(product of productsService.products(); track product.id){
+        @for(product of filteredProducts(); track product.id){
                 <div class="col-md-4 mb-4">
-                    <mat-card>
+                    <mat-card [appHighlight]="'#914bc1'">
                         <img 
                         mat-card-image 
                         [src]="product.image"
                         [alt]="product.title"
                         style="height: 200px; object-fit: contain; padding: 1rem;;"
                          />
-                    </mat-card>
+                    
                     <mat-card-header>
                         <mat-card-title>{{product.title}}</mat-card-title>
                         <mat-card-subtitle>{{product.price | currency   }}</mat-card-subtitle>
@@ -35,10 +38,17 @@
                     <mat-card-actions>
                         <button matButton>VIEW</button>
                         <span class="spacer"></span>
-                        <button matIconButton (click)="addToCart(product)">
-                            <mat-icon>add_shopping_cart</mat-icon>
-                        </button>
+                        @if(!latest()){
+                            <button matIconButton (click)="deleteProduct(product.id)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+
+                            <button matIconButton (click)="addToCart(product)">
+                                <mat-icon>add_shopping_cart</mat-icon>
+                            </button>
+                        }
                     </mat-card-actions>
+                    </mat-card>
                 </div>
             }
 </div>
