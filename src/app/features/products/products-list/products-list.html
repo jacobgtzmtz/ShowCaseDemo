@@ -1,6 +1,11 @@
 <div class="d-flex justify-content-between">
-    <h2>Products</h2>
-    <a matButton color="primary" [routerLink]="'/products/new'">Add Product</a>
+    <h2>{{'FEATURES.PRODUCTS.PRODUCTS' | translate}}</h2>
+    @if(authService.isLoggedIn()){
+        <a matButton color="primary" [routerLink]="'/products/new'">
+            {{'FEATURES.PRODUCTS.ADD_PRODUCT' | translate}}
+        </a>
+    }
+    
 </div>
 
 
@@ -10,7 +15,7 @@
     </div>
 } @else if (productsService.gotError()) {
   <div class="alert alert-danger">
-    Failed to load products.
+    {{'FEATURES.PRODUCTS.ERROR_LOADING' | translate}}
   </div>
 } @else {
 
@@ -18,6 +23,7 @@
         @for(product of filteredProducts(); track product.id){
                 <div class="col-md-4 mb-4">
                     <mat-card [appHighlight]="'#914bc1'">
+                        <a [routerLink]="['/products', product.id]" class="a-card-link">
                         <img 
                         mat-card-image 
                         [src]="product.image"
@@ -31,18 +37,22 @@
                     </mat-card-header>
                     <mat-card-content>
                             <p>
-                                Rate: 
+                                {{  'FEATURES.PRODUCTS.RATE' | translate}}: 
                                 {{ product.rating?.rate}}
                             </p>
                         </mat-card-content>
+                        </a>
                     <mat-card-actions>
-                        <button matButton>VIEW</button>
+                        <button matButton [routerLink]="['/products', product.id]">
+                            {{  'FEATURES.PRODUCTS.VIEW' | translate}}
+                        </button>
                         <span class="spacer"></span>
                         @if(!latest()){
-                            <button matIconButton (click)="deleteProduct(product.id)">
+                            @if(authService.isLoggedIn()){ 
+                                <button matIconButton (click)="deleteProduct(product.id)">
                                 <mat-icon>delete</mat-icon>
                             </button>
-
+                            }
                             <button matIconButton (click)="addToCart(product)">
                                 <mat-icon>add_shopping_cart</mat-icon>
                             </button>

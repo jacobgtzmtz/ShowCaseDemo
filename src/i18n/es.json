@@ -1,0 +1,35 @@
+{
+    "NAVBAR": {
+        "ADMIN_PANEL": "Panel de administración",
+        "HOME": "Inicio",
+        "LOGIN": "Iniciar sesión",
+        "LOGOUT": "Cerrar sesión",
+        "PRODUCTS": "Productos"
+    },
+    "FEATURES":{
+        "PRODUCTS": {
+            "ADD_PRODUCT": "Agregar Producto",
+            "BACK_TO_LIST": "Regresar a la lista",
+            "CATEGORY": "Categoria",
+            "CATEGORY_REQUIRED": "La categoría es requerida",
+            "CREATE_PRODUCT": "Crear Producto",
+            "DESCRIPTION": "Descripción",
+            "DESCRIPTION_REQUIRED": "La descripción es requerida",
+            "ERROR_LOADING": "Error al cargar productos. Por favor intenta más tarde.",
+            "IMAGE": "Imagen",
+            "IMAGE_URL_REQUIRED": "La url de la imagen es requerida",
+            "LATEST": "Productos nuevos",
+            "NOT_FOUND": "Producto no encontrado",
+            "PRICE": "Precio",
+            "PRICE_MUST_BE_POSITIVE": "El precio debe ser positivo",
+            "PRICE_REQUIRED": "El precio es requerido",
+            "PRODUCTS": "Productos",
+            "RATE": "Calificación",
+            "RATE_THIS_PRODUCT": "Califica este producto",
+            "SAVE": "Guardar",
+            "TITLE": "Titulo",
+            "TITLE_REQUIRED": "El titulo es requerido",
+            "VIEW": "Ver"
+        }
+    }
+}

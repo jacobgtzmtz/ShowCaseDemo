@@ -11,12 +11,27 @@ import { HighlightDirective } from '../../../shared/directives/highlight-directi
 import { RouterLink } from "@angular/router";
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogcomponent } from '../../../shared/components/confirm-dialogcomponent/confirm-dialogcomponent';
+import { AuthService } from '../../auth/services/auth-service';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-products-list',
-  imports: [MatProgressSpinnerModule, MatCardModule, MatButtonModule, CurrencyPipe, MatIcon, HighlightDirective, RouterLink],
+  imports: [
+    MatProgressSpinnerModule, 
+    MatCardModule, 
+    MatButtonModule, 
+    CurrencyPipe, 
+    MatIcon, 
+    HighlightDirective, 
+    RouterLink, 
+    TranslatePipe],
   templateUrl: './products-list.html',
-  styles: ``,
+  styles: `
+  .a-card-link {
+    all: unset;
+    cursor: pointer;
+  }
+  `,
 })
 export default class ProductsList {
   public latest = input<boolean>(false);
@@ -24,6 +39,9 @@ export default class ProductsList {
   public productsService = inject(ProductService);
   private cartService = inject(CartService)
   private dialog = inject(MatDialog);
+  public authService= inject(AuthService);
+  public translate = inject(TranslateService);
+
 
   protected filteredProducts = computed ( () => {
     const list = this.productsService.products();

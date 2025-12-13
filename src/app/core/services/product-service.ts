@@ -21,6 +21,9 @@ export class ProductService {
     }
   );
 
+  private selectedProductId = signal<string | null>(null);
+  public selectedProduct = computed(() => this.products().find(p => p.id === this.selectedProductId()) ?? null);
+
   public products = computed(() => this.productsState().data);
   public loading = computed(() => this.productsState().loading);
   public gotError = computed(() => this.productsState().error);
@@ -88,7 +91,33 @@ public deleteProduct(id: string): void {
   })
 }
 
+/**
+ * setSelectProductID
+ */
+public setSelectProductID(id: string | null): void {
+  this.selectedProductId.set(id);
+}
 
+/**
+ * updateProductRating
+ */
+public updateProductRating(productId: string, rating: number) {
+  this.http.patch<IProduct>(`${this.productsEndpoint}/${productId}`, { rating: {rate: rating} }).subscribe(
+    //Actualizar lista de productos local
+    updatedProduct => {
+      this.productsState.update(state => ({
+        ...state,
+        data: state.data.map(p => p.id === productId ? {...p, rating: updatedProduct.rating} : p)
+      }));
+
+      if(this.selectedProductId() === productId) {
+        this.selectedProductId.set(null);
+        this.setSelectProductID(productId);
+      }
+
+    }
+  );
+}
 
 
 }

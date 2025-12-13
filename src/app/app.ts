@@ -1,6 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavBar } from './shared/components/nav-bar/nav-bar';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -14,4 +15,14 @@ import { NavBar } from './shared/components/nav-bar/nav-bar';
 })
 export class App {
   protected readonly title = signal('showCaseDemo');
+
+  public translate = inject(TranslateService);
+
+
+  constructor(){
+    this.translate.addLangs(['en', 'es']);
+    const browserLang = this.translate.getBrowserLang();
+    this.translate.use(browserLang?.match(/en|es/) ? browserLang : 'en');
+
+  }
 }

@@ -1,0 +1,35 @@
+{
+    "NAVBAR": {
+        "ADMIN_PANEL": "Admin Panel",
+        "HOME": "Home",
+        "LOGIN": "Login",
+        "LOGOUT": "Logout",
+        "PRODUCTS": "Products"        
+    },
+    "FEATURES":{
+        "PRODUCTS": {
+            "ADD_PRODUCT": "Add Product",
+            "BACK_TO_LIST": "Back to list",
+            "CATEGORY": "Category",
+            "CATEGORY_REQUIRED": "Category is required",
+            "CREATE_PRODUCT": "Create Product",
+            "DESCRIPTION": "Description",
+            "DESCRIPTION_REQUIRED": "Description is required",
+            "ERROR_LOADING": "Error loading products. Please try again later.",
+            "IMAGE": "Image",
+            "IMAGE_URL_REQUIRED": "Image url is required",
+            "LATEST": "Our latest products",
+            "NOT_FOUND": "Product not found",
+            "PRICE": "Price",
+            "PRICE_MUST_BE_POSITIVE": "Price must be positive",
+            "PRICE_REQUIRED": "Price is required",
+            "PRODUCTS": "Products",
+            "RATE": "Rate",
+            "RATE_THIS_PRODUCT": "Rate this product",
+            "SAVE": "Save",
+            "TITLE": "Title",
+            "TITLE_REQUIRED": "Title is required",
+            "VIEW": "View"
+        }
+    }
+}

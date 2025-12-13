@@ -9,7 +9,7 @@
 html {
   @include mat.theme((
     color: (
-      primary: mat.$azure-palette,
+      primary: mat.$magenta-palette,
       tertiary: mat.$blue-palette,
     ),
     typography: Roboto,
@@ -21,9 +21,7 @@ html {
     container-text-color: #fff,
   ));
 
-  @include mat.icon-overrides((
-    color: orange,
-  ));
+
 }
 
 body {

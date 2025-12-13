@@ -4,11 +4,18 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatAnchor, MatButtonModule } from "@angular/material/button";
+import { MatButtonModule } from "@angular/material/button";
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-product-form',
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule],
+  imports: [
+    ReactiveFormsModule, 
+    MatFormFieldModule, 
+    MatInputModule, 
+    MatButtonModule,
+    TranslatePipe
+  ],
   templateUrl: './product-form.html',
   styles: ``,
 })
@@ -16,6 +23,7 @@ export default class ProductForm implements OnInit {
   private productService = inject(ProductService);
   private fb = inject(FormBuilder);
   private router = inject(Router);
+  public translate = inject(TranslateService);
 
   public productForm!: FormGroup;
 

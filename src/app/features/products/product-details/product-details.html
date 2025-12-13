@@ -1,1 +1,34 @@
-<p>product-details works!</p>
+@if(productService.selectedProduct(); as product) {
+    <div class="container mt-5">
+        <mat-card class="product-details-card">
+            <mat-card-header>
+                <mat-card-title>{{ product.title  }}</mat-card-title>
+                <mat-card-subtitle>{{ product.category }}</mat-card-subtitle>
+            </mat-card-header>
+            <div class="d-flex justify-content-center">
+                <img  mat-card-image [src]="product.image" [alt]="product.title" />
+            </div>
+            <mat-card-content>
+                <p>{{ product.description }}</p>
+                <h2 class="text-end">{{ product.price | currency }} </h2>
+
+                <div class="mt-2">
+                    <strong>{{'FEATURES.PRODUCTS.RATE_THIS_PRODUCT' | translate}}:</strong>
+                    @for(star of [1,2,3,4,5]; track star){
+                        <button mat-icon-button (click)="rateProduct(star)" [title]="'Rate with ' + star + 'stars'">
+                            <mat-icon>star_border</mat-icon>
+                        </button>
+                    }
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <a mat-button [routerLink]="'/products'">{{'FEATURES.PRODUCTS.BACK_TO_LIST' | translate}}</a>
+            </mat-card-actions>
+       </mat-card>
+    </div>
+} @else if (productService.loading()) {
+    <mat-spinner></mat-spinner>
+} @else {
+  <p>{{'FEATURES.PRODUCTS.NOT_FOUND' | translate}}</p>
+  <a mat-button [routerLink]="'/products'">{{'FEATURES.PRODUCTS.BACK_TO_LIST' | translate}}</a>
+}

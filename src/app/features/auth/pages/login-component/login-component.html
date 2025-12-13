@@ -1,0 +1,44 @@
+<section class="d-flex justify-content-center">
+
+    <mat-card appearance="outlined" class="d-flex flex-column w-50 mt-5">
+        <mat-card-header>
+            <mat-card-title>Welcome Back!</mat-card-title>
+            <mat-card-subtitle>Please enter your credentials.</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+            <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="d-flex flex-column">
+               <mat-form-field appearance="fill" class="full-width">
+                    <mat-label>User</mat-label>
+                    <input matInput name="username" [(ngModel)]="user.username" required #username="ngModel">
+                    @if(username.invalid && username.touched){
+                        <mat-error>You must capture your Username.</mat-error>    
+                    }
+               </mat-form-field> 
+
+               <mat-form-field appearance="fill" class="full-width">
+                    <mat-label>Password</mat-label>
+                    <input matInput name="password" [(ngModel)]="user.password" required #password="ngModel" type="password">
+                    @if(password.invalid && password.touched){
+                        <mat-error>You must capture your password.</mat-error>    
+                    }
+               </mat-form-field> 
+
+               <button mat-raised-button color="primaery" type="submit" [disabled]="loginForm.invalid">Log in.</button>
+
+               @if(error){
+                <div class="error-message"> {{ error }}</div>
+               }
+
+            </form>
+        </mat-card-content>
+        <mat-card-actions [align]="'end'">
+            <button matButton> Forgot Password?</button>
+            <button matButton [routerLink]="'/register'"> Create account.</button>
+
+        </mat-card-actions>
+
+
+    </mat-card>
+
+</section>
