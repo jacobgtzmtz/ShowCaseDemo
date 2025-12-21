@@ -40,3 +40,7 @@ npm run backend
     /home <-- cargue la página LanidngPage
     /products <-- cargue el componente ProductsList
     "" <-- Redireccione a el path home
+
+
+//Para las pruebas unitarias instalar zone.js
+Configurar angular json con el polyfill

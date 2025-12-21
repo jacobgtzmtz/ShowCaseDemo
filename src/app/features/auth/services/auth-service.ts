@@ -50,5 +50,14 @@ export class AuthService {
   public isLoggedIn(){
     return localStorage.getItem('isLoggedIn');
   }
+
+  /**
+   * register
+   */
+  public register(payload: IUser): Observable<IUser> {
+    return this.http.post<IUser>(`${this.authURL}/users/add`, payload).pipe(
+      catchError(handleError)
+    );
+  }
   
 }

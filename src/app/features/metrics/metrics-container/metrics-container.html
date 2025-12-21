@@ -1,0 +1,9 @@
+<section class="d-flex justify-content-around flex-wrap gap-3">
+    @for (metric of store.metrics(); track metric.id) {
+      <app-metrics-card [metric]="metric" ></app-metrics-card>
+    }
+</section>
+
+<section class="mt-4">
+  <app-metrics-card-details></app-metrics-card-details>
+</section>

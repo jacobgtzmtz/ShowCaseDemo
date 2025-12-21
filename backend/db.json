@@ -237,5 +237,26 @@
         "count": 145
       }
     }
+  ],
+  "metrics":[
+    {"id": "totalSales", "title": "Ventas", "value": 150386.3, "currencysymbol": "$", "trend": {
+      "percentage": 12.5,
+      "period": "vs el mes pasado"
+    },
+    "icon": "point_of_sale",
+    "iconColor": "#ff5733"
+  },
+  {"id": "processingOrders", "title": "Ordenes en proceso", "value": 100, "trend": {
+      "percentage": -2.5,
+      "period": "vs ayer"
+    },
+    "icon": "pending_actions",
+    "iconColor": "#2fd9f0ff"
+  },
+  {"id": "earnings", "title": "Ganancias netas", "value": 12345.3, "currencysymbol": "$", 
+    "icon": "point_of_sale",
+    "iconColor": "#98f54cff"
+  }
+    
   ]
 }

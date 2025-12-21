@@ -1,0 +1,36 @@
+@if (store.currentMetric(); as metric) {
+
+<mat-card class="metric-details-card">
+  <mat-card-header>
+    <div mat-card-avatar>
+      <mat-icon [style.color]="metric.iconColor">{{ metric?.icon }}</mat-icon>
+    </div>
+    <mat-card-title>{{metric.title}}</mat-card-title>
+    <mat-card-subtitle>Detalles de la métrica</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content class="mt-4">
+    <div>
+        @if(metric.currencysymbol){
+            {{ metric.value | currency}}
+        }@else {
+          {{ metric.value  }}
+        }
+    </div>    
+
+    @if(metric.trend; as trend){
+        <div>
+            <mat-icon [ngClass]="trend.percentage > 0 ? 'trend-up' : 'trend-down' ">
+                {{ trend.percentage > 0 ? 'arrow_upward' : 'arrow_downward'}}
+            </mat-icon>
+            <span>{{trend.percentage}}% {{trend.period}}</span>
+        </div>
+
+    }
+<p class="mt-5 p-5">
+    Sección para el resto de la información
+</p>
+  </mat-card-content>
+</mat-card>
+
+}
